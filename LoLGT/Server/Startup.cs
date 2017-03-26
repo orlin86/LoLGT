@@ -6,10 +6,12 @@ using System.Threading.Tasks;
 
 namespace Server
 {
-    class Program
+    class Startup
     {
         static void Main(string[] args)
         {
+            LolContext ctx = new LolContext();
+            ctx.Database.Initialize(true);
         }
     }
 }
