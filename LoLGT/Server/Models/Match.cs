@@ -10,10 +10,10 @@ namespace Server.Models
   
     public class Match
     {
-    //    [JsonProperty("region")]
+        [JsonProperty("region")]
         public string Region { get; set; }
 
-  //      [JsonProperty("platformId")]
+        [JsonProperty("platformId")]
         public string PlatformId { get; set; }
 
         [JsonProperty("matchId")]

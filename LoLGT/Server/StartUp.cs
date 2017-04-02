@@ -14,14 +14,24 @@ namespace Server
     {
         static void Main(string[] args)
         {
-            string summonerByNameUrl = @"https://na.api.pvp.net/api/lol/na/v1.4/summoner/by-name/Toni?api_key=RGAPI-83bc4cd9-c0d4-4fa3-a0a9-775ea5edc1e1";
-            string summonerMatchesById = @"https://na.api.pvp.net/api/lol/na/v2.2/matchlist/by-summoner/40738833?api_key=RGAPI-83bc4cd9-c0d4-4fa3-a0a9-775ea5edc1e1";
-            string summonerRankingById = @"https://eune.api.pvp.net/api/lol/eune/v1.3/stats/by-summoner/27786422/ranked?season=SEASON2016&api_key=RGAPI-83bc4cd9-c0d4-4fa3-a0a9-775ea5edc1e1";
+
             LoLClient client = new LoLClient();
-            string response =  client.DownloadString(summonerByNameUrl);
 
+            Console.WriteLine("Please enter summoner name");
+            string name = Console.ReadLine();
 
-            Dictionary<string, Player> matches = SerializerManager.PlayerDataSerializer(response);    
+            string summonerId = client.DownloadString(URLManager.SummonerByName(name)).ExtractID();
+            try
+            {
+                string summonerRanksResponse = client.DownloadString(URLManager.SummonerRankingById(summonerId));
+                var obj = SerializerManager.StatsRankingSerializer(summonerRanksResponse);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("There is no Ranks for such player Id! " + ex.Message);
+            }
+
+            Console.WriteLine();
 
         }
     }
