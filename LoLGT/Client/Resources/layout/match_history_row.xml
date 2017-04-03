@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="20dp"
+        android:paddingBottom="20dp"
+        >
+
+
+    <ImageView
+       android:id="@+id/champiom_image"
+       android:layout_width="0dp"
+       android:layout_height="wrap_content"
+       android:layout_weight="0.19"
+       android:src="@drawable/ahri"/>
+
+  
+  
+              <TextView
+      android:id="@+id/champion_name"
+      android:layout_width="0dp"
+      android:layout_height="wrap_content"
+      android:layout_weight="0.25"
+        />
+  <TextView
+      android:id="@+id/champion_kills"
+      android:layout_width="0dp"
+      android:layout_height="wrap_content"
+      android:layout_weight="0.1"
+        />
+  <TextView
+    android:id="@+id/champion_deaths"
+    android:layout_width="0dp"
+    android:layout_height="wrap_content"
+    android:layout_weight="0.1"
+        />
+  <TextView
+    android:id="@+id/champion_assists"
+    android:layout_width="0dp"
+    android:layout_height="wrap_content"
+    android:layout_weight="0.1"
+        />
+  <TextView
+    android:id="@+id/champion_mobs"
+    android:layout_width="0dp"
+    android:layout_height="wrap_content"
+    android:layout_weight="0.1"
+        />
+
+</LinearLayout>

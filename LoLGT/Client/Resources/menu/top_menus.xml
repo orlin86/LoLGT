@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+  <item
+       android:id="@+id/champion_stats_menu_item"
+       android:icon="@drawable/champion_stats"
+       android:showAsAction="ifRoom"
+       android:title="Character Statistics" />
+  <item
+       android:id="@+id/match_history_menu_item"
+       android:icon="@drawable/match_history"
+       android:showAsAction="ifRoom"
+       android:title="Match History" />
+  <item
+     android:id="@+id/aggregated_data_menu_item"
+     android:icon="@drawable/aggregated_data"
+     android:showAsAction="ifRoom"
+     android:title="Aggregated Data" />
+</menu>
