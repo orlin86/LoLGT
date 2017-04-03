@@ -6,14 +6,27 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Server.Models;
-using Newtonsoft.Json;
+using WebSocketSharp;
+using WebSocketSharp.Server;
 
 namespace Server
 {
     class StartUp
     {
+
+
         static void Main(string[] args)
         {
+            // ↓ Connect to ipaddress:4649/SendData
+            WebSocketServer wssv = new WebSocketServer(System.Net.IPAddress.Any, 4649);
+#if DEBUG
+            wssv.Log.Level = LogLevel.Trace;
+#endif
+            wssv.KeepClean = true;
+            wssv.WaitTime = TimeSpan.FromSeconds(120);
+            wssv.ReuseAddress = false;
+            // ↓ Implement Server activies in SendData.cs
+            wssv.AddWebSocketService<SendData>("/SendData");
 
             LoLClient client = new LoLClient();
 
@@ -33,6 +46,15 @@ namespace Server
 
             Console.WriteLine();
 
+
+
+
+            wssv.Start();
+            while (true)
+            {
+                
+            }
+            wssv.Stop();
         }
     }
 }
