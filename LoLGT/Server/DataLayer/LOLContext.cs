@@ -1,7 +1,4 @@
 ﻿
-
-
-
 namespace Server.DataLayer
 {
     using System.Collections.Generic;

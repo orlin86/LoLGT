@@ -17,13 +17,13 @@ namespace Server
 
             LoLClient client = new LoLClient();
 
-            Console.WriteLine("Please enter summoner name");
-            string name = Console.ReadLine();
+        //    Console.WriteLine("Please enter summoner name");
+       //     string name = Console.ReadLine();
 
-            string summonerId = client.DownloadString(URLManager.SummonerByName(name)).ExtractID();
+       //     string summonerId = client.DownloadString(URLManager.SummonerByName(name)).ExtractID();
             try
             {
-                string summonerRanksResponse = client.DownloadString(URLManager.SummonerRankingById(summonerId));
+                string summonerRanksResponse = client.DownloadString(URLManager.SummonerRankingById(27786422.ToString()));
                 var obj = SerializerManager.StatsRankingSerializer(summonerRanksResponse);
             }
             catch (Exception ex)
