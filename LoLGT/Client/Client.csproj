@@ -67,9 +67,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AggregatedDataActivity.cs" />
     <Compile Include="ChampionStatisticsActivity.cs" />
     <Compile Include="MainActivity.cs" />
     <Compile Include="MatchHistoryActivity.cs" />
+    <Compile Include="Model\AggregatedData.cs" />
+    <Compile Include="Model\AggregatedDataRow.cs" />
     <Compile Include="Model\ChampionStatistics.cs" />
     <Compile Include="Model\ChampionStatisticsRow.cs" />
     <Compile Include="Model\MatchHistory.cs" />
@@ -86,7 +89,10 @@
     <AndroidResource Include="Resources\layout\Menu.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
-    <AndroidResource Include="Resources\layout\Champion_statistics_layout.axml">
+    <AndroidResource Include="Resources\layout\champion_statistics_layout.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
+    <AndroidResource Include="Resources\layout\match_history_layout.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
   </ItemGroup>
@@ -135,11 +141,6 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\elise.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\layout\match_history_row.xml">
-      <SubType>Designer</SubType>
-    </AndroidResource>
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\values\styles.xml">
@@ -200,7 +201,7 @@
     <AndroidResource Include="Resources\drawable-xxxhdpi\aggregated_data.png" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\layout\champion_statistics_row.xml">
+    <AndroidResource Include="Resources\layout\aggregated_statistics_layout.xml">
       <SubType>Designer</SubType>
     </AndroidResource>
   </ItemGroup>

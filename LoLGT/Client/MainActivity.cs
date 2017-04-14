@@ -52,7 +52,7 @@ namespace App1
             searchSummonerButton.Click += (sender, e) =>
             {
                 var summonerName = FindViewById<EditText>(Resource.Id.InputSummonerName).Text;
-                var intent = new Intent(this, typeof(MatchHistoryActivity));
+                var intent = new Intent(this, typeof(AggregatedDataActivity));
                 intent.PutExtra("summoner_name", summonerName);
                 StartActivity(intent);
             };

@@ -12,7 +12,7 @@ using Android.Widget;
 
 namespace App1.Model
 {
-   public class ChampionStatisticsRow
+    public class AggregatedDataRow
     {
         public int Id { get; set; }
 

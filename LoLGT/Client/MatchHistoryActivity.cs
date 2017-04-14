@@ -13,174 +13,91 @@ namespace App1
     [Activity(Label = "MatchHistoryActivity")]
     public class MatchHistoryActivity : Activity
     {
-         //RecyclerView instance that displays the match history:
-                RecyclerView mRecyclerView;
-
-                // Layout manager that lays out each row in the RecyclerView:
-                RecyclerView.LayoutManager mLayoutManager;
-
-                // Adapter that accesses the data set (match history):
-                MatchHistoryAdapter mAdapter;
-
-                // Match history that is managed by the adapter:
-                MatchHistory matchHistory;
-
-            protected override void OnCreate(Bundle bundle)
-            {
-                base.OnCreate(bundle);
-                SetContentView(Resource.Layout.Menu);
-                var summonerName = Intent.Extras.GetString("summoner_name") ?? "";
-                var summonerTextField = (TextView)FindViewById<TextView>(Resource.Id.SummonerName);
-                summonerTextField.Text = summonerTextField.Text +  summonerName;
-                // Instantiate match history:
-                matchHistory = new MatchHistory();
-
-
-                // Set our view from the "menu" layout resource:
-
-
-                // Get our RecyclerView layout:
-                mRecyclerView = FindViewById<RecyclerView>(Resource.Id.recyclerView);
-
-                //............................................................
-                // Layout Manager Setup:
-
-                // Use the built-in linear layout manager:
-                mLayoutManager = new LinearLayoutManager(this);
-
-                // Or use the built-in grid layout manager (two horizontal rows):
-                // mLayoutManager = new GridLayoutManager
-                //        (this, 2, GridLayoutManager.Horizontal, false);
-
-                // Plug the layout manager into the RecyclerView:
-                mRecyclerView.SetLayoutManager(mLayoutManager);
-
-                //............................................................
-                // Adapter Setup:
-
-                // Create an adapter for the RecyclerView, and pass it the
-                // data set (the photo album) to manage:
-                mAdapter = new MatchHistoryAdapter(this, matchHistory);
-
-                // Plug the adapter into the RecyclerView:
-                mRecyclerView.SetAdapter(mAdapter);
-
-            var toolbar = FindViewById<Toolbar>(Resource.Id.menus_toolbar);
-            SetActionBar(toolbar);
-            ActionBar.Title = "LoL Game Tracker";
-             }
-
-        public override bool OnCreateOptionsMenu(IMenu menu)
+        MatchHistory matchHistory = new MatchHistory();
+        protected override void OnCreate(Bundle savedInstanceState)
         {
-            MenuInflater.Inflate(Resource.Menu.top_menus, menu);
-            return base.OnCreateOptionsMenu(menu);
-        }
+            base.OnCreate(savedInstanceState);
+            SetContentView(Resource.Layout.match_history_layout);
 
-        public override bool OnOptionsItemSelected(IMenuItem item)
-        {
-            //Toast.MakeText(this, "Action selected: " + item.TitleFormatted,
-            //    ToastLength.Short).Show();
+            //Create and append header row
+            TableRow headerRow = new TableRow(this);
+            headerRow.SetMinimumHeight(100);
 
 
 
-            switch (item.ItemId)
+            var imageHeader = new TextView(this);
+            imageHeader.Text = "Portrait";
+            var champNameHeader = new TextView(this);
+            champNameHeader.Text = "Champion";
+
+
+            var killsHeader = new TextView(this);
+            killsHeader.Text = "Kills";
+
+            var deathsHeader = new TextView(this);
+            deathsHeader.Text = "Deaths";
+
+            var assistsHeader = new TextView(this);
+            assistsHeader.Text = "Assists";
+
+            var minionHeader = new TextView(this);
+            minionHeader.Text = "Minions";
+
+            headerRow.AddView(imageHeader);
+            headerRow.AddView(champNameHeader);
+            headerRow.AddView(killsHeader);
+            headerRow.AddView(deathsHeader);
+            headerRow.AddView(assistsHeader);
+            headerRow.AddView(minionHeader);
+
+            //-----------------------------------
+            //-----------------------------------
+
+
+            //rest of the table (within a scroll view)
+            TableLayout table = (TableLayout)FindViewById(Resource.Id.maintable);
+            table.AddView(headerRow);
+
+            var random = new Random();
+
+            for (int i = 1; i < 100; i++)
             {
-                case Resource.Id.champion_stats_menu_item:
-                    var championstatsintent = new Intent(this, typeof(ChampionStatisticsActivity));
-                    StartActivity(championstatsintent);
-                    return true;
+                //Get Data Row
+                var matchHistoryRow = matchHistory[random.Next(0, 3)];
 
-                case Resource.Id.match_history_menu_item:
-                    var mainActivityIntent = new Intent(this, typeof(MainActivity));
-                    StartActivity(mainActivityIntent);
-                    return true;
-                default:
-                    return base.OnOptionsItemSelected(item);
+                //Create a new table row
+                TableRow row = new TableRow(this);
+                row.SetPadding(0, 20, 0, 0);
+                if (i % 2 == 0)
+                    row.SetBackgroundColor(Android.Graphics.Color.LightGray);
+
+                //Create Table children(these will be the columns)
+                var ChampImageView = new ImageView(this);
+                var ChampionNameTexView = new TextView(this);
+                var KillsTextView = new TextView(this);
+                var DeathsTextView = new TextView(this);
+                var AssistsTextView = new TextView(this);
+                var MinionKillsView = new TextView(this);
+
+                //Fill columns with data from the db
+                ChampImageView.SetImageResource(Resource.Drawable.ahri);
+                ChampionNameTexView.Text = matchHistoryRow.ChampionName;
+                KillsTextView.Text = matchHistoryRow.Kills.ToString();
+                DeathsTextView.Text = matchHistoryRow.Deaths.ToString();
+                AssistsTextView.Text = matchHistoryRow.Assists.ToString();
+                MinionKillsView.Text = matchHistoryRow.MinionKills.ToString();
+            
+                //append(view to the row)
+                row.AddView(ChampImageView);
+                row.AddView(ChampionNameTexView);
+                row.AddView(KillsTextView);
+                row.AddView(DeathsTextView);
+                row.AddView(AssistsTextView);
+                row.AddView(MinionKillsView);
+
+                //append row to the table layout
+                table.AddView(row, i);
             }
         }
-    }
-
-
-    //----------------------------------------------------------------------
-    // VIEW HOLDER
-
-    // Implement the ViewHolder pattern: each ViewHolder holds references
-    // to the UI components (ImageView and TextView) within the CardView 
-    // that is displayed in a row of the RecyclerView:
-
-
-    //----------------------------------------------------------------------
-    // ADAPTER
-
-    // Adapter to connect the data set (match history) to the RecyclerView: 
-    public class MatchHistoryAdapter : RecyclerView.Adapter
-        {
-
-               public  class MatchHistoryViewHolder : RecyclerView.ViewHolder
-               {
-                   public TextView ChampionName;
-                   public TextView Kills;
-                   public TextView Deaths;
-                   public TextView Assists;
-                   public TextView Mobs;
-                   public ImageView Image;
-
-            // Get references to the views defined in the CardView layout.
-            public MatchHistoryViewHolder(View itemView)
-                       : base(itemView)
-                   {
-                // Locate and cache view references:
-                       ChampionName = itemView.FindViewById<TextView>(Resource.Id.champion_name);
-                       Kills = itemView.FindViewById<TextView>(Resource.Id.champion_kills);
-                       Deaths = itemView.FindViewById<TextView>(Resource.Id.champion_deaths);
-                       Assists = itemView.FindViewById<TextView>(Resource.Id.champion_assists);
-                       Mobs = itemView.FindViewById<TextView>(Resource.Id.champion_mobs);
-                       Image = itemView.FindViewById<ImageView>(Resource.Id.champiom_image);
-            }
-               }
-        // Underlying data set (match history):
-        private MatchHistory matchHistory;
-            private Context context;
-
-            // Load the adapter with the data set (match history) at construction time:
-            public MatchHistoryAdapter(Context context, MatchHistory matchHistory)
-            {
-                this.matchHistory = matchHistory;
-                this.context = context;
-            }
-
-
-        // Create a match history view : 
-        public override RecyclerView.ViewHolder
-                OnCreateViewHolder(ViewGroup parent, int viewType)
-            {
-                Context context = parent.Context;
-                // Inflate the view for the data:
-                View itemView = LayoutInflater.From(context).
-                            Inflate(Resource.Layout.match_history_row, parent, false);
-
-                MatchHistoryViewHolder vh = new MatchHistoryViewHolder(itemView);
-                return vh;
-            }
-
-            // Fill in the contents of the view holder (invoked by the layout manager):
-            public override void
-                OnBindViewHolder(RecyclerView.ViewHolder holder, int position)
-            {
-                 MatchHistoryViewHolder vh = holder as MatchHistoryViewHolder;
-
-                // Set the data in the ViewHolder's
-                vh.ChampionName.Text = matchHistory[position].ChampionName;
-                vh.Kills.Text = matchHistory[position].Kills.ToString();
-                vh.Deaths.Text = matchHistory[position].Deaths.ToString();
-                vh.Assists.Text = matchHistory[position].Assists.ToString();
-                vh.Mobs.Text = matchHistory[position].MinionKills.ToString();
-        }
-
-            // Return the number of rows available in match history:
-            public override int ItemCount
-            {
-                get { return matchHistory.RowsLength; }
-            }
     }
 }
