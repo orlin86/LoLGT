@@ -40,26 +40,22 @@ namespace App1
          ws.Send();
      */
 
-
-
-
-
-
             // Set our view from the "main" layout resource
             SetContentView(Resource.Layout.Main);
-            Button searchSummonerButton = FindViewById<Button>(Resource.Id.SummonerSubmitButton);
 
+
+            Button searchSummonerButton = FindViewById<Button>(Resource.Id.SummonerSubmitButton);
             searchSummonerButton.Click += (sender, e) =>
             {
                 var summonerName = FindViewById<EditText>(Resource.Id.InputSummonerName).Text;
-                var intent = new Intent(this, typeof(AggregatedDataActivity));
+                var intent = new Intent(this, typeof(ChampionStatisticsActivity));
                 intent.PutExtra("summoner_name", summonerName);
                 StartActivity(intent);
             };
 
-            var toolbar = FindViewById<Toolbar>(Resource.Id.toolbar);
+            var toolbar = FindViewById<Toolbar>(Resource.Id.main_toolbar);
             SetActionBar(toolbar);
-            ActionBar.Title = "LoL Game Tracker";
+            ActionBar.Title = "League of Legends Game Tracker";
         }
     }
 }

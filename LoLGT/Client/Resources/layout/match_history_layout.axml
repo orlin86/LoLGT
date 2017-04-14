@@ -1,16 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
-
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/table_scroll"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginRight="2dp"
     android:layout_marginLeft="2dp">
+  <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent">
+    <include
+        android:id="@+id/match_history_toolbar"
+        layout="@layout/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="120.0dp" />
     <TableLayout
         android:id="@+id/maintable"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:stretchColumns="*"
-    >
-    </TableLayout>
+        android:stretchColumns="*" />
+
+  </RelativeLayout>
 </ScrollView>

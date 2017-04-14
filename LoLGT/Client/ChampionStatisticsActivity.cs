@@ -14,7 +14,7 @@ using App1.Model;
 
 namespace App1
 {
-    [Activity(Label = "ChampionStatisticsActivity")]
+    [Activity(Label = "Champion Stats")]
     public class ChampionStatisticsActivity : Activity
     {
         protected override void OnCreate(Bundle savedInstanceState)
@@ -22,13 +22,14 @@ namespace App1
             ChampionStatistics championStatistics = new ChampionStatistics();
 
             base.OnCreate(savedInstanceState);
+
             SetContentView(Resource.Layout.champion_statistics_layout);
+
 
             //Create and append header row
             TableRow headerRow = new TableRow(this);
             headerRow.SetMinimumHeight(100);
-
-
+            headerRow.SetPadding(0, 120, 0, 120);
 
             var imageHeader = new TextView(this);
             imageHeader.Text = "Portrait";
@@ -66,7 +67,7 @@ namespace App1
 
             var random = new Random();
 
-            for (int i = 1; i < 100; i++)
+            for (int i = 1; i < 5; i++)
             {
                 //Get Data Row
                 var championStatisticsRow = championStatistics[random.Next(0, 3)];
@@ -105,6 +106,37 @@ namespace App1
                 table.AddView(row, i);
             }
 
+            var toolbar = FindViewById<Toolbar>(Resource.Id.champ_stats_toolbar);
+            SetActionBar(toolbar);
+            ActionBar.Title = "Champion Stats";
+        }
+
+        public override bool OnCreateOptionsMenu(IMenu menu)
+        {
+            MenuInflater.Inflate(Resource.Menu.top_menus, menu);
+            return base.OnCreateOptionsMenu(menu);
+        }
+
+        public override bool OnOptionsItemSelected(IMenuItem item)
+        {
+            //Toast.MakeText(this, "Action selected: " + item.TitleFormatted,
+            //    ToastLength.Short).Show();
+
+            switch (item.ItemId)
+            {
+                case Resource.Id.aggregated_data_menu_item:
+                    var aggregatedDataIntent = new Intent(this, typeof(AggregatedDataActivity));
+                    StartActivity(aggregatedDataIntent);
+                    return true;
+                case Resource.Id.match_history_menu_item:
+                    var MatchHistoryIntent = new Intent(this, typeof(MatchHistoryActivity));
+                    StartActivity(MatchHistoryIntent);
+                    return true;
+                default:
+                    Toast.MakeText(this, "Already selected: " + item.TitleFormatted,
+                        ToastLength.Short).Show();
+                    return true;
+            }
         }
 
     }

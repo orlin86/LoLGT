@@ -5,13 +5,19 @@
     android:layout_height="wrap_content"
     android:layout_marginRight="2dp"
     android:layout_marginLeft="2dp">
-  <HorizontalScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-            android:layout_width="fill_parent" android:layout_height="fill_parent">
-
+  <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent">
+    <include
+        android:id="@+id/aggregated_data_toolbar"
+        layout="@layout/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="120.0dp" />
     <TableLayout
   android:id="@+id/maintable_aggregated_data"
   android:layout_width="match_parent"
   android:layout_height="wrap_content"
   android:stretchColumns="*" />
-  </HorizontalScrollView>
+  </RelativeLayout>
 </ScrollView>

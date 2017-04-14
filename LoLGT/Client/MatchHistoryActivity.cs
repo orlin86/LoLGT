@@ -10,19 +10,20 @@ using System.Collections.Generic;
 using App1.Model;
 namespace App1
 {
-    [Activity(Label = "MatchHistoryActivity")]
+    [Activity(Label = "Match History")]
     public class MatchHistoryActivity : Activity
     {
         MatchHistory matchHistory = new MatchHistory();
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
+
             SetContentView(Resource.Layout.match_history_layout);
 
             //Create and append header row
             TableRow headerRow = new TableRow(this);
             headerRow.SetMinimumHeight(100);
-
+            headerRow.SetPadding(0, 120, 0, 120);
 
 
             var imageHeader = new TextView(this);
@@ -97,6 +98,38 @@ namespace App1
 
                 //append row to the table layout
                 table.AddView(row, i);
+            }
+
+            var toolbar = FindViewById<Toolbar>(Resource.Id.match_history_toolbar);
+            SetActionBar(toolbar);
+            ActionBar.Title = "Match History";
+        }
+
+        public override bool OnCreateOptionsMenu(IMenu menu)
+        {
+            MenuInflater.Inflate(Resource.Menu.top_menus, menu);
+            return base.OnCreateOptionsMenu(menu);
+        }
+
+        public override bool OnOptionsItemSelected(IMenuItem item)
+        {
+            //Toast.MakeText(this, "Action selected: " + item.TitleFormatted,
+            //    ToastLength.Short).Show();
+
+            switch (item.ItemId)
+            {
+                case Resource.Id.champion_stats_menu_item:
+                    var champStatsDataIntent = new Intent(this, typeof(ChampionStatisticsActivity));
+                    StartActivity(champStatsDataIntent);
+                    return true;
+                case Resource.Id.aggregated_data_menu_item:
+                    var aggregatedDataIntent = new Intent(this, typeof(AggregatedDataActivity));
+                    StartActivity(aggregatedDataIntent);
+                    return true;
+                default:
+                    Toast.MakeText(this, "Already selected: " + item.TitleFormatted,
+                        ToastLength.Short).Show();
+                    return true;
             }
         }
     }

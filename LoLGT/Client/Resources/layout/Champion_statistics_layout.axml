@@ -5,9 +5,19 @@
     android:layout_height="wrap_content"
     android:layout_marginRight="2dp"
     android:layout_marginLeft="2dp">
-    <TableLayout
-        android:id="@+id/maintable_champ_stats"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:stretchColumns="*" />
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent">
+        <include
+            android:id="@+id/champ_stats_toolbar"
+            layout="@layout/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="120.0dp" />
+        <TableLayout
+            android:id="@+id/maintable_champ_stats"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:stretchColumns="*" />
+    </RelativeLayout>
 </ScrollView>

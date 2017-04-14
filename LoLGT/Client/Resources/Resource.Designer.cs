@@ -118,59 +118,62 @@ namespace App1
 		public partial class Id
 		{
 			
-			// aapt resource value: 0x7f050006
-			public const int HomeImage = 2131034118;
-			
 			// aapt resource value: 0x7f050008
-			public const int InputSummonerName = 2131034120;
+			public const int HomeImage = 2131034120;
 			
-			// aapt resource value: 0x7f050007
-			public const int LabelSummonerInputField = 2131034119;
-			
-			// aapt resource value: 0x7f05000d
-			public const int SummonerName = 2131034125;
+			// aapt resource value: 0x7f05000a
+			public const int InputSummonerName = 2131034122;
 			
 			// aapt resource value: 0x7f050009
-			public const int SummonerSubmitButton = 2131034121;
+			public const int LabelSummonerInputField = 2131034121;
 			
-			// aapt resource value: 0x7f050011
-			public const int aggregated_data_menu_item = 2131034129;
+			// aapt resource value: 0x7f05000b
+			public const int SummonerSubmitButton = 2131034123;
 			
-			// aapt resource value: 0x7f05000f
-			public const int champion_stats_menu_item = 2131034127;
+			// aapt resource value: 0x7f050012
+			public const int aggregated_data_menu_item = 2131034130;
+			
+			// aapt resource value: 0x7f050002
+			public const int aggregated_data_toolbar = 2131034114;
+			
+			// aapt resource value: 0x7f050005
+			public const int champ_stats_toolbar = 2131034117;
+			
+			// aapt resource value: 0x7f050010
+			public const int champion_stats_menu_item = 2131034128;
 			
 			// aapt resource value: 0x7f050000
 			public const int item_touch_helper_previous_elevation = 2131034112;
 			
-			// aapt resource value: 0x7f05000b
-			public const int maintable = 2131034123;
-			
-			// aapt resource value: 0x7f050002
-			public const int maintable_aggregated_data = 2131034114;
-			
-			// aapt resource value: 0x7f050004
-			public const int maintable_champ_stats = 2131034116;
-			
-			// aapt resource value: 0x7f050010
-			public const int match_history_menu_item = 2131034128;
-			
-			// aapt resource value: 0x7f05000c
-			public const int menus_toolbar = 2131034124;
+			// aapt resource value: 0x7f050007
+			public const int main_toolbar = 2131034119;
 			
 			// aapt resource value: 0x7f05000e
-			public const int recyclerView = 2131034126;
+			public const int maintable = 2131034126;
 			
-			// aapt resource value: 0x7f05000a
-			public const int table_scroll = 2131034122;
+			// aapt resource value: 0x7f050003
+			public const int maintable_aggregated_data = 2131034115;
+			
+			// aapt resource value: 0x7f050006
+			public const int maintable_champ_stats = 2131034118;
+			
+			// aapt resource value: 0x7f050011
+			public const int match_history_menu_item = 2131034129;
+			
+			// aapt resource value: 0x7f05000d
+			public const int match_history_toolbar = 2131034125;
+			
+			// aapt resource value: 0x7f05000c
+			public const int table_scroll = 2131034124;
 			
 			// aapt resource value: 0x7f050001
 			public const int table_scroll_aggregated_data = 2131034113;
 			
-			// aapt resource value: 0x7f050003
-			public const int table_scroll_champ_stats = 2131034115;
+			// aapt resource value: 0x7f050004
+			public const int table_scroll_champ_stats = 2131034116;
 			
-			// aapt resource value: 0x7f050005
-			public const int toolbar = 2131034117;
+			// aapt resource value: 0x7f05000f
+			public const int toolbar = 2131034127;
 			
 			static Id()
 			{
@@ -198,10 +201,7 @@ namespace App1
 			public const int match_history_layout = 2130903043;
 			
 			// aapt resource value: 0x7f030004
-			public const int Menu = 2130903044;
-			
-			// aapt resource value: 0x7f030005
-			public const int toolbar = 2130903045;
+			public const int toolbar = 2130903044;
 			
 			static Layout()
 			{
