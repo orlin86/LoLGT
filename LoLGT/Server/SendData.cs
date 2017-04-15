@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Server.ServiceConsumer;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,8 +24,12 @@ namespace Server
         {
             // ↓ Toni Add here the method to parse data from the LoL APi
             Console.WriteLine(e.Data);
+
             //If summoner exists
-            Send("#02");
+            LoLClient lol = new LoLClient();
+            // Toni is just example of a name
+            // method returns found -> #02 or not found #03 as requested 
+            Send(lol.GetDataBySummonerName("Toni"));
             //else
             //Send("03");
         }

@@ -37,30 +37,7 @@ namespace Server
             // ↓ Implement Server activies in SendData.cs
             wssv.AddWebSocketService<SendData>("/SendData");
 
-            LoLClient client = new LoLClient();
-            string jsonFilePath = "../../AditionalFiles/IdToName.json";
-            //    Console.WriteLine("Please enter summoner name");
-            //     string name = Console.ReadLine();
-
-            //     string summonerId = client.DownloadString(URLManager.SummonerByName(name)).ExtractID();
-            string sumName = "Toni";
-            Dictionary<int, string> idName = new Dictionary<int, string>();
-
-            try
-            {
-                idName = ReaderManager.FileReader(jsonFilePath);
-                string summonerRanksResponse = client.DownloadString(URLManager.SummonerRankingById(27786422));
-                var rankingModel = SerializerManager.StatsRankingSerializer(summonerRanksResponse);
-                var rankingModelWithNames = NameManager.RankingNameFiller(rankingModel, sumName, idName);
-
-                string summonerMatchesResponse = client.DownloadString(URLManager.SummonerMatchesById(27786422));
-                var matchesModel = SerializerManager.MatchesDeserializer(summonerMatchesResponse);
-                var matchesModelWithNames = NameManager.MachesNameFiller(matchesModel, sumName, idName);
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine("There is no Ranks for such player Id! " + ex.Message);
-            }
+       //     LoLClient lol = new LoLClient();
 
             Console.WriteLine();
 
