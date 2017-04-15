@@ -75,6 +75,7 @@
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Service\NameManager.cs" />
+    <Compile Include="Service\ReaderManager.cs" />
     <Compile Include="Service\SerializerManager.cs" />
     <Compile Include="Service\URLManager.cs" />
     <Compile Include="Startup.cs" />

@@ -11,17 +11,17 @@ namespace Server.Service
 
         public static string SummonerByName(string name)
         {
-            string url = $"https://na.api.pvp.net/api/lol/na/v1.4/summoner/by-name/{name}?api_key=RGAPI-83bc4cd9-c0d4-4fa3-a0a9-775ea5edc1e1";
+            string url = $"https://eune.api.pvp.net/api/lol/eune/v1.4/summoner/by-name/{name}?api_key=RGAPI-83bc4cd9-c0d4-4fa3-a0a9-775ea5edc1e1";
             return url;
         }
 
         public static string SummonerMatchesById(int id)
         {
-           string url = $"https://na.api.pvp.net/api/lol/na/v2.2/matchlist/by-summoner/{id}?api_key=RGAPI-83bc4cd9-c0d4-4fa3-a0a9-775ea5edc1e1";
+           string url = $"https://eune.api.pvp.net/api/lol/eune/v2.2/matchlist/by-summoner/{id}?api_key=RGAPI-83bc4cd9-c0d4-4fa3-a0a9-775ea5edc1e1";
            return url;
         }
 
-        public static string SummonerRankingById(string id)
+        public static string SummonerRankingById(int id)
         {
             string url = $"https://eune.api.pvp.net/api/lol/eune/v1.3/stats/by-summoner/{id}/ranked?season=SEASON2016&api_key=RGAPI-83bc4cd9-c0d4-4fa3-a0a9-775ea5edc1e1";
             return url;

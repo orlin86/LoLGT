@@ -10,6 +10,7 @@ using ServerConsoleApp;
 using WebSocketSharp;
 using WebSocketSharp.Server;
 using Server.DataLayer;
+using Server.Service;
 namespace Server
 {
     class StartUp
@@ -19,8 +20,8 @@ namespace Server
         static void Main(string[] args)
         {
             //Init DB
-            var context = new LoLGTContext();
-            context.Database.Initialize(true);
+       //     var context = new LoLGTContext();
+       //     context.Database.Initialize(true);
 
 
             DateTime timeAtSendToClients = new DateTime();
@@ -37,15 +38,24 @@ namespace Server
             wssv.AddWebSocketService<SendData>("/SendData");
 
             LoLClient client = new LoLClient();
+            string jsonFilePath = "../../AditionalFiles/IdToName.json";
+            //    Console.WriteLine("Please enter summoner name");
+            //     string name = Console.ReadLine();
 
-        //    Console.WriteLine("Please enter summoner name");
-       //     string name = Console.ReadLine();
+            //     string summonerId = client.DownloadString(URLManager.SummonerByName(name)).ExtractID();
+            string sumName = "Toni";
+            Dictionary<int, string> idName = new Dictionary<int, string>();
 
-       //     string summonerId = client.DownloadString(URLManager.SummonerByName(name)).ExtractID();
             try
             {
-                string summonerRanksResponse = client.DownloadString(URLManager.SummonerRankingById(27786422.ToString()));
-                var obj = SerializerManager.StatsRankingSerializer(summonerRanksResponse);
+                idName = ReaderManager.FileReader(jsonFilePath);
+                string summonerRanksResponse = client.DownloadString(URLManager.SummonerRankingById(27786422));
+                var rankingModel = SerializerManager.StatsRankingSerializer(summonerRanksResponse);
+                var rankingModelWithNames = NameManager.RankingNameFiller(rankingModel, sumName, idName);
+
+                string summonerMatchesResponse = client.DownloadString(URLManager.SummonerMatchesById(27786422));
+                var matchesModel = SerializerManager.MatchesDeserializer(summonerMatchesResponse);
+                var matchesModelWithNames = NameManager.MachesNameFiller(matchesModel, sumName, idName);
             }
             catch (Exception ex)
             {
