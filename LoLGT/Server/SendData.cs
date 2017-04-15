@@ -24,9 +24,9 @@ namespace Server
             // ↓ Toni Add here the method to parse data from the LoL APi
             Console.WriteLine(e.Data);
             //If summoner exists
-            Send("02");
+            Send("#02");
             //else
-            Send("03");
+            //Send("03");
         }
 
         protected override void OnClose(CloseEventArgs e)

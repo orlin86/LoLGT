@@ -18,31 +18,45 @@ namespace App1
         protected override void OnCreate(Bundle bundle)
         {
             base.OnCreate(bundle);
-
             SetContentView(Resource.Layout.Main);
-            try
-            {
-                WsClient.Connect();
-            }
-            catch (Exception e)
-            {
-               
-                // ↓ Navigate to Main Page, params CONNECTION UNAVAILABLE
-            }
 
+            Button searchSummonerButton = FindViewById<Button>(Resource.Id.SummonerSubmitButton);
+            EditText inputSummonerName = FindViewById<EditText>(Resource.Id.InputSummonerName);
             ThreadPool.QueueUserWorkItem(o => WsClient.ws.OnError += (sender, e) =>
             {
                 // ↓ Navigate to Main Page, params CONNECTION ERROR
             });
+
             ThreadPool.QueueUserWorkItem(o => WsClient.ws.OnClose += (sender, e) =>
             {
                 
                 // ↓ Navigate to Main Page, params CONNECTION CLOSED
 
             });
+            ThreadPool.QueueUserWorkItem(o => WsClient.ws.OnMessage += (senderer, er) =>
+            {
+                RunOnUiThread(() => inputSummonerName.Text = er.Data);
+                // ↓ Code for Summoner exists
+                if (er.Data.Contains("#02"))
+                {
+                    var intent = new Intent(this, typeof(ChampionStatisticsActivity));
+                    intent.PutExtra("summoner_name", inputSummonerName.Text);
+                    StartActivity(intent);
+                }
+                else if (er.Data.Contains("#03"))
+                {
+                    // redirect to mainscreen with params Summoner does not exist
+                }
+            });
 
-            Button searchSummonerButton = FindViewById<Button>(Resource.Id.SummonerSubmitButton);
-            EditText inputSummonerName = FindViewById<EditText>(Resource.Id.InputSummonerName);
+            try
+            {
+                WsClient.Connect();
+            }
+            catch (Exception e)
+            {
+                // ↓ Navigate to Main Page, params CONNECTION UNAVAILABLE
+            }
 
             var toolbar = FindViewById<Toolbar>(Resource.Id.main_toolbar);
             SetActionBar(toolbar);
@@ -63,22 +77,6 @@ namespace App1
                     WsClient.ws.Close();
                     // redirect to mainscreen with params websocket.send error?
                 }
-
-                ThreadPool.QueueUserWorkItem(o => WsClient.ws.OnMessage += (senderer, er) =>
-                {
-                    RunOnUiThread(() => inputSummonerName.Text = er.Data);
-                    // ↓ Code for Summoner exists
-                    if (er.Data.Take(2).ToString() == "02")
-                    {
-                        var intent = new Intent(this, typeof(ChampionStatisticsActivity));
-                        intent.PutExtra("summoner_name", summonerName);
-                        StartActivity(intent);
-                    }
-                    else if (er.Data.Take(2).ToString() == "03")
-                    {
-                        // redirect to mainscreen with params Summoner does not exist
-                    }
-                });
             };
         }
     }
