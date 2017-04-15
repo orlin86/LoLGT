@@ -49,9 +49,6 @@ namespace Server
 
             Console.WriteLine();
 
-
-
-
             wssv.Start();
             timeAtSendToClients = DateTime.Now;
 
@@ -63,6 +60,11 @@ namespace Server
                 {
                     // ↓ Tony add the data to send to the clients in SendData
                     string dataToBroadcast = "";
+                    wssv.WebSocketServices["/SendData"].Sessions.Broadcast(dataToBroadcast);
+                }
+                if (input.Take(5).ToString().ToLower() == "send ")
+                { 
+                    string dataToBroadcast = input.Skip(5).ToString();
                     wssv.WebSocketServices["/SendData"].Sessions.Broadcast(dataToBroadcast);
                 }
 

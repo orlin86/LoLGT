@@ -12,7 +12,8 @@ namespace App1
     [Activity(Label = "LoL Game Tracker", MainLauncher = true, Icon = "@drawable/home_pic")]
     public class MainActivity : Activity
     {
-        public readonly WebSocketClient WsClient = new WebSocketClient("ws://SERVER IP ADDRESS:4649/SendData");
+        //public readonly WebSocketClient WsClient = new WebSocketClient("ws://SERVER IP ADDRESS:4649/SendData");
+        public readonly WebSocketClient WsClient = new WebSocketClient("ws://192.168.0.100:4649/SendData");
 
         protected override void OnCreate(Bundle bundle)
         {
@@ -39,6 +40,7 @@ namespace App1
             });
 
             Button searchSummonerButton = FindViewById<Button>(Resource.Id.SummonerSubmitButton);
+            EditText inputSummonerName = FindViewById<EditText>(Resource.Id.InputSummonerName);
 
             var toolbar = FindViewById<Toolbar>(Resource.Id.main_toolbar);
             SetActionBar(toolbar);
@@ -46,7 +48,7 @@ namespace App1
 
             searchSummonerButton.Click += (sender, e) =>
             {
-                var summonerName = FindViewById<EditText>(Resource.Id.InputSummonerName).Text;
+                var summonerName = inputSummonerName.Text;
                 try
                 {
                     WsClient.Send($"01{summonerName}");
@@ -62,6 +64,7 @@ namespace App1
 
                 ThreadPool.QueueUserWorkItem(o => WsClient.ws.OnMessage += (senderer, er) =>
                 {
+                    RunOnUiThread(() => inputSummonerName.Text = er.Data);
                     // ↓ Code for Summoner exists
                     if (er.Data.Take(2).ToString() == "02")
                     {
