@@ -20,7 +20,9 @@ namespace Server.Models
         public long MatchId { get; set; }
 
         [JsonProperty("champion")]
-          public int? Champion { get; set; }
+          public int? ChampionId { get; set; }
+        [JsonIgnore]
+        public string ChampionName { get; set; }
 
         [JsonProperty("queue")]
         public string Queue { get; set; }

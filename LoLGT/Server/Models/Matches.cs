@@ -1,21 +1,24 @@
-﻿using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.Serialization;
-using System.Text;
-using System.Threading.Tasks;
+﻿
+
 
 namespace Server.Models
 {
-   public class Matches
+    using Newtonsoft.Json;
+    using System;
+    using System.Collections.Generic;
+    public class Matches
     {
 
         public Matches()
         {
-            this.MatchesList = new List<Match>();
+            this.MatchesList = new HashSet<Match>();
         }
+        [JsonIgnore]
+        public int Id { get; set; }
+        [JsonIgnore]
+        public string SummonerName { get; set; }
+
         [JsonProperty("matches")]
-        public List<Match> MatchesList { get; set; } 
+        public ICollection<Match> MatchesList { get; set; } 
     }
 }

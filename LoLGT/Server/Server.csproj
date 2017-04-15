@@ -74,12 +74,14 @@
     <Compile Include="ServiceConsumer\LeagueOfLegendClient.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Service\NameManager.cs" />
     <Compile Include="Service\SerializerManager.cs" />
     <Compile Include="Service\URLManager.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="AditionalFiles\IdToName.json" />
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
