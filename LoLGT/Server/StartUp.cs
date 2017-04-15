@@ -9,7 +9,7 @@ using Server.Models;
 using ServerConsoleApp;
 using WebSocketSharp;
 using WebSocketSharp.Server;
-
+using Server.DataLayer;
 namespace Server
 {
     class StartUp
@@ -18,6 +18,11 @@ namespace Server
 
         static void Main(string[] args)
         {
+            //Init DB
+            var context = new LoLGTContext();
+            context.Database.Initialize(true);
+
+
             DateTime timeAtSendToClients = new DateTime();
             DateTime timeNow = new DateTime();
             // ↓ Connect to ipaddress:4649/SendData

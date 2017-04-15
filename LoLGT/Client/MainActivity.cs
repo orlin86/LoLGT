@@ -26,6 +26,7 @@ namespace App1
             }
             catch (Exception e)
             {
+               
                 // ↓ Navigate to Main Page, params CONNECTION UNAVAILABLE
             }
 
@@ -35,6 +36,7 @@ namespace App1
             });
             ThreadPool.QueueUserWorkItem(o => WsClient.ws.OnClose += (sender, e) =>
             {
+                
                 // ↓ Navigate to Main Page, params CONNECTION CLOSED
 
             });

@@ -49,6 +49,7 @@
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -61,7 +62,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DataLayer\LOLContext.cs" />
+    <Compile Include="DataLayer\LoLGTContext.cs" />
     <Compile Include="Models\Champion.cs" />
     <Compile Include="Models\Player.cs" />
     <Compile Include="Models\Stats.cs" />
