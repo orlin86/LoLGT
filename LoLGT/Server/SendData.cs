@@ -20,6 +20,7 @@ namespace Server
 
         protected override void OnMessage(MessageEventArgs e)
         {
+            // ↓ Toni Add here the method to parse data from the LoL APi
         }
 
         protected override void OnClose(CloseEventArgs e)

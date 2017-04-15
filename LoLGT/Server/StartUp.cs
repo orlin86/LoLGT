@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Server.Models;
+using ServerConsoleApp;
 using WebSocketSharp;
 using WebSocketSharp.Server;
 
@@ -17,6 +18,8 @@ namespace Server
 
         static void Main(string[] args)
         {
+            DateTime timeAtSendToClients = new DateTime();
+            DateTime timeNow = new DateTime();
             // ↓ Connect to ipaddress:4649/SendData
             WebSocketServer wssv = new WebSocketServer(System.Net.IPAddress.Any, 4649);
 #if DEBUG
@@ -50,9 +53,29 @@ namespace Server
 
 
             wssv.Start();
-            while (true)
+            timeAtSendToClients = DateTime.Now;
+
+            string input = "";
+            while (input!="stop")
             {
-                
+                timeNow = DateTime.Now;
+                if (timeNow == timeAtSendToClients+TimeSpan.FromMinutes(5))
+                {
+                    // ↓ Tony add the data to send to the clients in SendData
+                    string dataToBroadcast = "";
+                    wssv.WebSocketServices["/SendData"].Sessions.Broadcast(dataToBroadcast);
+                }
+
+                input = "";
+                try
+                {
+                    input = ReaderForLoops.ReadLine(150000);
+                }
+                catch (TimeoutException)
+                {
+                    //Console.WriteLine("Next loop init");
+                }
+
             }
             wssv.Stop();
         }

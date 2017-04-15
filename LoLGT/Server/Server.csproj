@@ -68,6 +68,7 @@
     <Compile Include="Models\StatsRanking.cs" />
     <Compile Include="Models\Match.cs" />
     <Compile Include="Models\Matches.cs" />
+    <Compile Include="ReaderForLoops.cs" />
     <Compile Include="SendData.cs" />
     <Compile Include="ServiceConsumer\LeagueOfLegendClient.cs">
       <SubType>Component</SubType>

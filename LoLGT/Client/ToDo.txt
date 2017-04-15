@@ -1,0 +1,10 @@
+﻿Client.MainActivity:
+
+Thefrozen add the code, descibed in the following lines:
+Line 28, 33, 37, 54, 60, 74
+
+Server.SendData:
+
+Tony add the code, described in the followin lines:
+Line 23, 64
+

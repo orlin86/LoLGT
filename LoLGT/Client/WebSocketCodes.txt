@@ -1,0 +1,6 @@
+﻿01 - Client to server summoner name
+
+02 onwards: Server to client 
+
+02 - Summoner exists TRUE
+03 - Summoner exists FALSE
