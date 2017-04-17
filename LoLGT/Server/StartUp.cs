@@ -19,11 +19,21 @@ namespace Server
 
         static void Main(string[] args)
         {
-            //Init DB
-       //     var context = new LoLGTContext();
-       //     context.Database.Initialize(true);
+            // INit DB
+        //    Utility.LaunchDB();
 
+             LoLClient lol = new LoLClient();
+            lol.GetSummonerIdByName("Hades Underworld");
+            lol.GetSummonerMatchesById();
+            lol.GetSummonerRankingById();
+            lol.GetSummonerGamesById();
 
+            LoLGTContext context = new LoLGTContext();
+         //   context.
+            context.Matches.Add(lol.Matches);
+            context.StatsRanking.Add(lol.Ranking);
+            context.SummonerGames.Add(lol.SummonerGames);
+            context.SaveChanges();
             DateTime timeAtSendToClients = new DateTime();
             DateTime timeNow = new DateTime();
             // ↓ Connect to ipaddress:4649/SendData

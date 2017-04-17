@@ -13,7 +13,7 @@ namespace App1
     public class MainActivity : Activity
     {
         //public readonly WebSocketClient WsClient = new WebSocketClient("ws://SERVER IP ADDRESS:4649/SendData");
-        public readonly WebSocketClient WsClient = new WebSocketClient("ws://192.168.0.100:4649/SendData");
+        public readonly WebSocketClient WsClient = new WebSocketClient("ws://192.168.1.5/SendData");
 
         protected override void OnCreate(Bundle bundle)
         {

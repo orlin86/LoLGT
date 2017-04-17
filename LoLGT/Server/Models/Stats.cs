@@ -1,9 +1,13 @@
 ﻿
+
 namespace Server.Models
 {
-   public class Stats
-    {
+    using Newtonsoft.Json;
 
+    public class Stats
+    {
+        [JsonIgnore]
+        public int Id { get; set; }
         public string TotalSessionsPlayed { get; set; }
         public string TotalSessionsLost { get; set; }
         public string TotalSessionsWon { get; set; }

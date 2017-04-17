@@ -17,8 +17,8 @@ namespace Server.Service
                 }
                 catch (Exception ex)
                 {
-                    throw new ArgumentException("Error ocuured " + ex.Message);                    
-                }               
+                    throw new ArgumentException("Error ocuured " + ex.Message);
+                }
             }
             return matches;
         }
@@ -27,17 +27,34 @@ namespace Server.Service
         {
             ranking.SummonerName = summonerName;
             foreach (var champion in ranking.Champions)
-            {              
+            {
                 try
                 {
                     champion.ChampionName = idAndName[champion.Id];
                 }
                 catch (Exception ex)
                 {
-                    throw new ArgumentException("Error occured " + ex.Message);                    
-                }              
+                    throw new ArgumentException("Error occured " + ex.Message);
+                }
             }
             return ranking;
+        }
+
+        public static SummonerGames GamesNameFiller(SummonerGames summonerGames, string summonerName, Dictionary<int, string> idAndName)
+        {
+            summonerGames.SummonerName = summonerName;
+            try
+            {
+                foreach (var game in summonerGames.Games)
+                {
+                    game.ChampionName = idAndName[game.ChampionId];
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new ArgumentException("Error occured " + ex.Message);
+            }
+            return summonerGames;
         }
     }
 }

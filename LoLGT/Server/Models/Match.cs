@@ -10,6 +10,7 @@ namespace Server.Models
   
     public class Match
     {
+        public int Id { get; set; }
         [JsonProperty("region")]
         public string Region { get; set; }
 

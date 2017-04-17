@@ -29,7 +29,7 @@ namespace Server
             LoLClient lol = new LoLClient();
             // Toni is just example of a name
             // method returns found -> #02 or not found #03 as requested 
-            Send(lol.GetDataBySummonerName("Toni"));
+            Send(lol.GetSummonerIdByName(e.Data));
             //else
             //Send("03");
         }

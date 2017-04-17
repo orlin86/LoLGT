@@ -1,7 +1,10 @@
 ﻿
+
 namespace Server.Models
 {
-   public class Player
+    using Newtonsoft.Json;
+
+    public class Summoner
     {
         public int Id { get; set; }
         public string Name { get; set; }

@@ -64,22 +64,24 @@
   <ItemGroup>
     <Compile Include="DataLayer\LoLGTContext.cs" />
     <Compile Include="Models\Champion.cs" />
-    <Compile Include="Models\Player.cs" />
+    <Compile Include="Models\Games.cs" />
+    <Compile Include="Models\Summoner.cs" />
+    <Compile Include="Models\GameStatistics.cs" />
     <Compile Include="Models\Stats.cs" />
     <Compile Include="Models\StatsRanking.cs" />
     <Compile Include="Models\Match.cs" />
     <Compile Include="Models\Matches.cs" />
+    <Compile Include="Models\SummonerGames.cs" />
     <Compile Include="ReaderForLoops.cs" />
     <Compile Include="SendData.cs" />
-    <Compile Include="ServiceConsumer\LeagueOfLegendClient.cs">
-      <SubType>Component</SubType>
-    </Compile>
+    <Compile Include="ServiceConsumer\LoLClient.cs" />
     <Compile Include="Service\NameManager.cs" />
     <Compile Include="Service\ReaderManager.cs" />
     <Compile Include="Service\SerializerManager.cs" />
     <Compile Include="Service\URLManager.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Utility.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="AditionalFiles\IdToName.json" />

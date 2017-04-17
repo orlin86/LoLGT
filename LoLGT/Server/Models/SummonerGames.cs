@@ -1,21 +1,19 @@
-﻿using System;
-
+﻿
 namespace Server.Models
 {
     using Newtonsoft.Json;
+    using System;
     using System.Collections.Generic;
-    public class StatsRanking
+    public class SummonerGames
     {
-        public StatsRanking()
+        public SummonerGames()
         {
-            this.Champions = new HashSet<Champion>();
+           this.Games = new HashSet<Games>();
         }
         [JsonIgnore]
         public int Id { get; set; }
         public int SummonerId { get; set; }
-        [JsonIgnore]
         public string SummonerName { get; set; }
-        public long ModifyDate { get; set; }
-        public ICollection<Champion> Champions { get; set; }
+        public ICollection<Games> Games { get; set; }
     }
 }

@@ -40,12 +40,26 @@ namespace Server.Service
             }
         }
 
-        public static Dictionary<string, Player> PlayerDataSerializer(string response)
+        public static SummonerGames SummonerGamesSerializer(string response)
         {
-            Dictionary<string, Player> plData;
+            SummonerGames summonerGames;
             try
             {
-                plData = JsonConvert.DeserializeObject<Dictionary<string, Player>>(response);
+                summonerGames = JsonConvert.DeserializeObject<SummonerGames>(response);
+                return summonerGames;
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+        }
+
+        public static Dictionary<string, Summoner> PlayerDataSerializer(string response)
+        {
+            Dictionary<string, Summoner> plData;
+            try
+            {
+                plData = JsonConvert.DeserializeObject<Dictionary<string, Summoner>>(response);
                 return plData;
             }
             catch (Exception)
@@ -53,5 +67,7 @@ namespace Server.Service
                 throw;
             }
         }
+
+
     }
 }
