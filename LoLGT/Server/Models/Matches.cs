@@ -16,6 +16,8 @@ namespace Server.Models
         [JsonIgnore]
         public int Id { get; set; }
         [JsonIgnore]
+        public int SummonerId { get; set; }
+        [JsonIgnore]
         public string SummonerName { get; set; }
 
         [JsonProperty("matches")]

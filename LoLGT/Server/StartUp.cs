@@ -20,10 +20,10 @@ namespace Server
         static void Main(string[] args)
         {
             // INit DB
-        //    Utility.LaunchDB();
-
+            //    Utility.LaunchDB();
+            Console.WriteLine(n);
              LoLClient lol = new LoLClient();
-            lol.GetSummonerIdByName("Hades Underworld");
+            lol.GetSummonerIdByName("Sirias");
             lol.GetSummonerMatchesById();
             lol.GetSummonerRankingById();
             lol.GetSummonerGamesById();

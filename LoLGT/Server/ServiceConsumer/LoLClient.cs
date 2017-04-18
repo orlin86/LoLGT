@@ -27,7 +27,7 @@ namespace Server.ServiceConsumer
         private int summonerId;
         public LoLClient()
         {
-            this.client = new WebClient();
+            //  this.client = new WebClient();
             this.idName = new Dictionary<int, string>();
         }
 
@@ -98,9 +98,12 @@ namespace Server.ServiceConsumer
         {
             try
             {
-                string summonerId = client.DownloadString(URLManager.SummonerByName(sumName)).ExtractID();
-                this.SummonerId = int.Parse(summonerId);
-                this.SummonerName = sumName;
+                using (this.client = new WebClient())
+                {
+                    string summonerId = client.DownloadString(URLManager.SummonerByName(sumName)).ExtractID();
+                    this.SummonerId = int.Parse(summonerId);
+                    this.SummonerName = sumName;
+                }
                 return responseCode = "#02";
             }
             catch (Exception ex)
@@ -114,7 +117,10 @@ namespace Server.ServiceConsumer
             idName = ReaderManager.FileReader(jsonFilePath);
             try
             {
-                summonerRanksResponse = client.DownloadString(URLManager.SummonerRankingById(summonerId));
+                using (this.client = new WebClient())
+                {
+                    summonerRanksResponse = client.DownloadString(URLManager.SummonerRankingById(summonerId));
+                }
                 responseCode = "#02";
             }
             catch (Exception ex)
@@ -139,7 +145,10 @@ namespace Server.ServiceConsumer
         {
             try
             {
-                summonerMatchesResponse = client.DownloadString(URLManager.SummonerMatchesById(summonerId));
+                using (this.client = new WebClient())
+                {
+                    summonerMatchesResponse = client.DownloadString(URLManager.SummonerMatchesById(summonerId));
+                };
                 responseCode = "#02";
             }
             catch (Exception ex)
@@ -150,7 +159,7 @@ namespace Server.ServiceConsumer
             {
                 idName = ReaderManager.FileReader(jsonFilePath);
                 var matchesModel = SerializerManager.MatchesDeserializer(summonerMatchesResponse);
-                matchesModel.Id = this.SummonerId;
+                matchesModel.SummonerId = this.SummonerId;
                 this.Matches = NameManager.MachesNameFiller(matchesModel, this.summonerName, idName);
             }
             catch (Exception ex)
@@ -164,7 +173,10 @@ namespace Server.ServiceConsumer
         {
             try
             {
-                summonerGamesResponse = client.DownloadString(URLManager.SummonerGamesById(summonerId));
+                using (this.client = new WebClient())
+                {
+                    summonerGamesResponse = client.DownloadString(URLManager.SummonerGamesById(summonerId));
+                }
                 responseCode = "#02";
             }
             catch (Exception ex)
@@ -176,7 +188,6 @@ namespace Server.ServiceConsumer
                 idName = ReaderManager.FileReader(jsonFilePath);
                 SummonerGames summonerGamesModel = SerializerManager.SummonerGamesSerializer(summonerGamesResponse);
                 this.SummonerGames = NameManager.GamesNameFiller(summonerGamesModel, this.summonerName, idName);
-
             }
             catch (Exception ex)
             {

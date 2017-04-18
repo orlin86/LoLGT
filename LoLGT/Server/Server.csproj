@@ -79,6 +79,7 @@
     <Compile Include="Service\ReaderManager.cs" />
     <Compile Include="Service\SerializerManager.cs" />
     <Compile Include="Service\URLManager.cs" />
+    <Compile Include="Service\ViewsDataSelector.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Utility.cs" />
@@ -88,7 +89,6 @@
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
