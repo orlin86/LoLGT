@@ -24,7 +24,7 @@ namespace App1
             base.OnCreate(savedInstanceState);
 
             SetContentView(Resource.Layout.champion_statistics_layout);
-
+            MainActivity.WsClient.ws.Send("#04");
 
             //Create and append header row
             TableRow headerRow = new TableRow(this);

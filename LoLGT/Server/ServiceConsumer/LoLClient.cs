@@ -98,6 +98,7 @@ namespace Server.ServiceConsumer
         {
             try
             {
+                
                 string summonerId = client.DownloadString(URLManager.SummonerByName(sumName)).ExtractID();
                 this.SummonerId = int.Parse(summonerId);
                 this.SummonerName = sumName;
