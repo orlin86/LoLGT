@@ -69,8 +69,8 @@
     <Compile Include="Models\GameStatistics.cs" />
     <Compile Include="Models\Stats.cs" />
     <Compile Include="Models\StatsRanking.cs" />
-    <Compile Include="Models\Match.cs" />
-    <Compile Include="Models\Matches.cs" />
+    <Compile Include="Models\TempModels\Match.cs" />
+    <Compile Include="Models\TempModels\Matches.cs" />
     <Compile Include="Models\SummonerGames.cs" />
     <Compile Include="ReaderForLoops.cs" />
     <Compile Include="SendData.cs" />
@@ -79,7 +79,7 @@
     <Compile Include="Service\ReaderManager.cs" />
     <Compile Include="Service\SerializerManager.cs" />
     <Compile Include="Service\URLManager.cs" />
-    <Compile Include="Service\ViewsDataSelector.cs" />
+    <Compile Include="Service\DataFetcher.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Utility.cs" />
@@ -88,6 +88,12 @@
     <None Include="AditionalFiles\IdToName.json" />
     <None Include="App.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Client\Client.csproj">
+      <Project>{8e23dd08-f1a9-4e16-977a-35c665720e44}</Project>
+      <Name>Client</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
