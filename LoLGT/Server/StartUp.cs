@@ -15,15 +15,13 @@ namespace Server
 {
     class StartUp
     {
-
-
         static void Main(string[] args)
         {
             // INit DB
-            //    Utility.LaunchDB();
-            Console.WriteLine(n);
-             LoLClient lol = new LoLClient();
-            lol.GetSummonerIdByName("Sirias");
+        //    Utility.LaunchDB();
+
+            LoLClient lol = new LoLClient();
+            lol.GetSummonerIdByName("Hades Underworld");
             lol.GetSummonerMatchesById();
             lol.GetSummonerRankingById();
             lol.GetSummonerGamesById();
