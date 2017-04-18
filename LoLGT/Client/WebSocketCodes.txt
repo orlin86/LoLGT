@@ -4,3 +4,4 @@
 
 #02 - Summoner exists TRUE
 #03 - Summoner exists FALSE
+#04 - Client asks for champ stats

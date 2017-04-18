@@ -13,12 +13,14 @@ namespace App1
     public class MainActivity : Activity
     {
         //public readonly WebSocketClient WsClient = new WebSocketClient("ws://SERVER IP ADDRESS:4649/SendData");
-        public readonly WebSocketClient WsClient = new WebSocketClient("ws://192.168.1.5/SendData");
+        public static WebSocketClient WsClient = new WebSocketClient("ws://192.168.0.101/SendData");
 
         protected override void OnCreate(Bundle bundle)
         {
             base.OnCreate(bundle);
             SetContentView(Resource.Layout.Main);
+
+
 
             Button searchSummonerButton = FindViewById<Button>(Resource.Id.SummonerSubmitButton);
             EditText inputSummonerName = FindViewById<EditText>(Resource.Id.InputSummonerName);
@@ -45,6 +47,8 @@ namespace App1
                 }
                 else if (er.Data.Contains("#03"))
                 {
+                    Toast.MakeText(this, "There is no summoner with this name",
+                     ToastLength.Long).Show();
                     // redirect to mainscreen with params Summoner does not exist
                 }
             });

@@ -29,7 +29,14 @@ namespace Server
             LoLClient lol = new LoLClient();
             // Toni is just example of a name
             // method returns found -> #02 or not found #03 as requested 
-            Send(lol.GetSummonerIdByName(e.Data));
+            if (e.Data.Contains("#01"))
+            {
+                Send(lol.GetSummonerIdByName(e.Data.Skip(3).ToString()));
+            }
+            else if (e.Data.Contains("#04"))
+            {
+                Console.WriteLine("Send data to champ stats!");
+            }
             //else
             //Send("03");
         }
