@@ -26,7 +26,6 @@ namespace App1.Model
                 Wins = 55,
                 Loses = 45,
                 KDA = 11,
-                AverageGameDuration = "31.32",
                 MinionKills = 210
             },
 
@@ -38,7 +37,6 @@ namespace App1.Model
                 Wins = 33,
                 Loses = 67,
                 KDA = 3,
-                AverageGameDuration = "38.33",
                 MinionKills = 111
             },
 
@@ -50,7 +48,6 @@ namespace App1.Model
                 Wins = 20,
                 Loses = 80,
                 KDA = 4,
-                AverageGameDuration = "31.32",
                 MinionKills = 55
             }
 

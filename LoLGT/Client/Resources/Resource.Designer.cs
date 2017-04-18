@@ -130,9 +130,6 @@ namespace App1
 			// aapt resource value: 0x7f05000b
 			public const int SummonerSubmitButton = 2131034123;
 			
-			// aapt resource value: 0x7f050012
-			public const int aggregated_data_menu_item = 2131034130;
-			
 			// aapt resource value: 0x7f050002
 			public const int aggregated_data_toolbar = 2131034114;
 			

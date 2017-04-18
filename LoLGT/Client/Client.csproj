@@ -71,12 +71,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AggregatedDataActivity.cs" />
     <Compile Include="ChampionStatisticsActivity.cs" />
     <Compile Include="MainActivity.cs" />
     <Compile Include="MatchHistoryActivity.cs" />
-    <Compile Include="Model\AggregatedData.cs" />
-    <Compile Include="Model\AggregatedDataRow.cs" />
     <Compile Include="Model\ChampionStatistics.cs" />
     <Compile Include="Model\ChampionStatisticsRow.cs" />
     <Compile Include="Model\MatchHistory.cs" />

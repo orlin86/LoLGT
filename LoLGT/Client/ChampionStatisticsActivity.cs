@@ -124,10 +124,6 @@ namespace App1
 
             switch (item.ItemId)
             {
-                case Resource.Id.aggregated_data_menu_item:
-                    var aggregatedDataIntent = new Intent(this, typeof(AggregatedDataActivity));
-                    StartActivity(aggregatedDataIntent);
-                    return true;
                 case Resource.Id.match_history_menu_item:
                     var MatchHistoryIntent = new Intent(this, typeof(MatchHistoryActivity));
                     StartActivity(MatchHistoryIntent);

@@ -15,8 +15,7 @@ namespace App1.Model
                 Kills = 5,
                 Deaths = 3,
                 Assists = 4,
-                MinionKills = 120,
-                GameDuration = "25:34"
+                MinionKills = 120
             },
 
             new MatchHistoryRow
@@ -28,8 +27,7 @@ namespace App1.Model
                 Kills = 2,
                 Deaths = 5,
                 Assists = 4,
-                MinionKills = 80,
-                GameDuration = "20:01"
+                MinionKills = 80
             },
 
             new MatchHistoryRow
@@ -41,8 +39,7 @@ namespace App1.Model
                 Kills = 7,
                 Deaths = 4,
                 Assists = 1,
-                MinionKills = 220,
-                GameDuration = "42:34"
+                MinionKills = 220
             }
 
         };

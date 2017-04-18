@@ -72,7 +72,9 @@ namespace App1
                 try
                 {
                     WsClient.Send($"01{summonerName}");
-
+                    var intent = new Intent(this, typeof(ChampionStatisticsActivity));
+                    intent.PutExtra("summoner_name", inputSummonerName.Text);
+                    StartActivity(intent);
                     // ↓ if WsClient.send does not succeed will close the connection and redirect to mainpage
 
                 }

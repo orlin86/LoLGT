@@ -19,8 +19,5 @@ namespace App1.Model
 
         public int MinionKills { get; set; }
 
-        public string GameDuration { get; set; }
-
-
     }
 }

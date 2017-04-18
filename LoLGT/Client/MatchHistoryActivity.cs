@@ -122,10 +122,6 @@ namespace App1
                     var champStatsDataIntent = new Intent(this, typeof(ChampionStatisticsActivity));
                     StartActivity(champStatsDataIntent);
                     return true;
-                case Resource.Id.aggregated_data_menu_item:
-                    var aggregatedDataIntent = new Intent(this, typeof(AggregatedDataActivity));
-                    StartActivity(aggregatedDataIntent);
-                    return true;
                 default:
                     Toast.MakeText(this, "Already selected: " + item.TitleFormatted,
                         ToastLength.Short).Show();

@@ -10,9 +10,4 @@
        android:icon="@drawable/match_history"
        android:showAsAction="ifRoom"
        android:title="Match History" />
-  <item
-     android:id="@+id/aggregated_data_menu_item"
-     android:icon="@drawable/aggregated_data"
-     android:showAsAction="ifRoom"
-     android:title="Aggregated Data" />
 </menu>
