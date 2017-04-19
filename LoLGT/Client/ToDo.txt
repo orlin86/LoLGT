@@ -1,15 +1,9 @@
-﻿Client.MainActivity:
+﻿Tony:
+Add method in SendData Line 34
 
-Thefrozen add the code, descibed in the following lines:
-Line 28, 33, 37, 54, 60, 74
+Add method in SendData Line 40
 
-Server.SendData:
-Line 23
-Tony add the code, described in the followin lines:
-Line 23
+Svetoslav:
+Add method in ChampionStatisticsActivity Line 36
 
-Server.Startups:
-
-Tony add the code, described in the followin lines:
-Line 64
-
+Add method in MatchHistoryActivity Line 33

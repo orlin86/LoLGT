@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using Android.App;
 using Android.Content;
 using Android.Runtime;
@@ -7,6 +7,7 @@ using Android.Widget;
 using Android.OS;
 using Android.Support.V7.Widget;
 using System.Collections.Generic;
+using System.Threading;
 using App1.Model;
 namespace App1
 {
@@ -19,6 +20,20 @@ namespace App1
             base.OnCreate(savedInstanceState);
 
             SetContentView(Resource.Layout.match_history_layout);
+
+            MainActivity.WsClient.ws.Send("#06");
+
+            // ↓ Stanislav, add here method to parse the json
+            ThreadPool.QueueUserWorkItem(o => MainActivity.WsClient.ws.OnMessage += (senderer, er) =>
+            {
+                // ↓ Incoming data from the server
+                if (er.Data.Contains("#07"))
+                {
+                    var json = er.Data.Substring(3);
+                    // ↓ ADD THE METHOD HERE WITH json AS PARAM
+                }
+            });
+
 
             //Create and append header row
             TableRow headerRow = new TableRow(this);

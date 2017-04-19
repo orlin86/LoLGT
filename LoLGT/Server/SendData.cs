@@ -22,23 +22,23 @@ namespace Server
 
         protected override void OnMessage(MessageEventArgs e)
         {
-            // ↓ Toni Add here the method to parse data from the LoL APi
             Console.WriteLine(e.Data);
 
-            //If summoner exists
             LoLClient lol = new LoLClient();
-            // Toni is just example of a name
-            // method returns found -> #02 or not found #03 as requested 
             if (e.Data.Contains("#01"))
             {
                 Send(lol.GetSummonerIdByName(e.Data.Skip(3).ToString()));
             }
             else if (e.Data.Contains("#04"))
             {
-                Console.WriteLine("Send data to champ stats!");
+                // ↓ Tony, add here the method for ChampionStatisticsActivity
+                //Send ($"#05{METHOD NAME)");
             }
-            //else
-            //Send("03");
+            else if (e.Data.Contains("#06"))
+            {
+                // ↓ Tony, add here the method for MatchHistory
+                //Send ($"#07{METHOD NAME)");
+            }
         }
 
         protected override void OnClose(CloseEventArgs e)
