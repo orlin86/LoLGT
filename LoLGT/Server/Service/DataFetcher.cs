@@ -20,7 +20,7 @@ namespace Server.Service
                 var statsRanking = context.StatsRanking.Where(x => x.SummonerName == summonerName).FirstOrDefault();
                 if (statsRanking == null)
                 {
-                    return "#04";
+                    return "#08";
                 }
                 foreach (var champion in statsRanking.Champions)
                 {
@@ -38,7 +38,7 @@ namespace Server.Service
                     champStats.Add(newChampionDTO);
                 }
             };
-            return "#02" + JsonConvert.SerializeObject(champStats);
+            return "#05" + JsonConvert.SerializeObject(champStats);
         }
 
         public string MatchHistoryData(string summonerName)
@@ -50,7 +50,7 @@ namespace Server.Service
                 var summonerGames = context.SummonerGames.Where(x => x.SummonerName == summonerName).FirstOrDefault();
                 if (summonerGames == null)
                 {
-                    return "#05";
+                    return "#09";
                 }
                 foreach (var game in summonerGames.Games)
                 {
@@ -63,7 +63,7 @@ namespace Server.Service
                     matchHistoryList.Add(matchHistoryDTO);
                 }
             }
-            return "#02" + JsonConvert.SerializeObject(matchHistoryList);
+            return "#07" + JsonConvert.SerializeObject(matchHistoryList);
         }
 
 

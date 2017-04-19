@@ -29,21 +29,22 @@ namespace Server
             LoLClient lol = new LoLClient();
             if (e.Data.Contains("#01"))
             {
-                Send(lol.GetSummonerIdByName(e.Data.Skip(3).ToString()));
+                Send(lol.GetSummonerIdByName(e.Data.Substring(3)));
             }
             else if (e.Data.Contains("#04"))
             {
                 // ↓ Tony, add here the method for ChampionStatisticsActivity
                 //Send ($"#05{METHOD NAME)");
-                string jsonChampStats = dataFetcher.ChampionStatsData("Hades Underworld");
-                Send($"#05{jsonChampStats}");
+                string jsonChampStats = dataFetcher.ChampionStatsData(e.Data.Substring(3));
+                Console.WriteLine(jsonChampStats);
+                Send($"{jsonChampStats}");
             }
             else if (e.Data.Contains("#06"))
             {
                 // ↓ Tony, add here the method for MatchHistory
                 //Send ($"#07{METHOD NAME)");
-                string jsonMatchesHistory = dataFetcher.MatchHistoryData("Hades Underworld");
-                Send($"#07{jsonMatchesHistory}");
+                string jsonMatchesHistory = dataFetcher.MatchHistoryData(e.Data.Substring(3));
+                Send($"{jsonMatchesHistory}");
             }
         }
 

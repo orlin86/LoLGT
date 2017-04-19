@@ -24,7 +24,7 @@ namespace App1
 
             SetContentView(Resource.Layout.match_history_layout);
 
-            MainActivity.WsClient.ws.Send("#06");
+            MainActivity.WsClient.ws.Send("#06" + this.Intent.Extras.GetString("summoner_name"));
 
             // ↓ Stanislav, add here method to parse the json
             ThreadPool.QueueUserWorkItem(o => MainActivity.WsClient.ws.OnMessage += (senderer, er) =>
@@ -35,6 +35,15 @@ namespace App1
                     var json = er.Data.Substring(3);
                     matchHistoryRowList = JsonConvert.DeserializeObject<List<MatchHistoryRow>>(json);
                     // ↓ ADD THE METHOD HERE WITH json AS PARAM
+                }
+
+                else if (er.Data.Contains("#09"))
+                {
+                    Toast.MakeText(this, "There are no champion stats for this summoner!",
+                    ToastLength.Long).Show();
+                    //Thread.Sleep(5000);
+                    var intent = new Intent(this, typeof(MainActivity));
+                    StartActivity(intent);
                 }
             });
 

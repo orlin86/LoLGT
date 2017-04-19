@@ -6,6 +6,7 @@ using Android.App;
 using Android.Widget;
 using Android.OS;
 using Android.Content;
+using System.Collections.Generic;
 
 namespace App1
 {
@@ -13,10 +14,11 @@ namespace App1
     public class MainActivity : Activity
     {
         //public readonly WebSocketClient WsClient = new WebSocketClient("ws://SERVER IP ADDRESS:4649/SendData");
-        public static WebSocketClient WsClient = new WebSocketClient("ws://192.168.0.101/SendData");
+        public static WebSocketClient WsClient = new WebSocketClient("ws://192.168.0.100:4649/SendData");
 
         protected override void OnCreate(Bundle bundle)
         {
+
             base.OnCreate(bundle);
             SetContentView(Resource.Layout.Main);
 
@@ -71,10 +73,7 @@ namespace App1
                 var summonerName = inputSummonerName.Text;
                 try
                 {
-                    WsClient.Send($"01{summonerName}");
-                    var intent = new Intent(this, typeof(ChampionStatisticsActivity));
-                    intent.PutExtra("summoner_name", inputSummonerName.Text);
-                    StartActivity(intent);
+                    WsClient.Send($"#01{summonerName}");
                     // ↓ if WsClient.send does not succeed will close the connection and redirect to mainpage
 
                 }

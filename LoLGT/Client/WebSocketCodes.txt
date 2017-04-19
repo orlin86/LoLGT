@@ -7,6 +7,9 @@
 
 #04 - Client asks for champ stats
 #05 - Server returns data for champ stats
+#08 - Server returns no data for champ stats
+
 
 #06 - Client asks for MatchHistory
 #07 - SErver returns data for MatchHistory
+#09 - Server returns no data for match history
