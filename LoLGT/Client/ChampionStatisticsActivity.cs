@@ -1,8 +1,8 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-
+using System.Threading;
 using Android.App;
 using Android.Content;
 using Android.OS;
@@ -24,7 +24,20 @@ namespace App1
             base.OnCreate(savedInstanceState);
 
             SetContentView(Resource.Layout.champion_statistics_layout);
+
             MainActivity.WsClient.ws.Send("#04");
+
+            // ↓ Stanislav, add here method to parse the json
+            ThreadPool.QueueUserWorkItem(o => MainActivity.WsClient.ws.OnMessage += (senderer, er) =>
+            {
+                // ↓ Incoming data from the server
+                if (er.Data.Contains("#05"))
+                {
+                    var json = er.Data.Substring(3);
+                    // ↓ ADD THE METHOD HERE WITH json AS PARAM
+                    
+                }
+            });
 
             //Create and append header row
             TableRow headerRow = new TableRow(this);
@@ -124,10 +137,6 @@ namespace App1
 
             switch (item.ItemId)
             {
-                case Resource.Id.aggregated_data_menu_item:
-                    var aggregatedDataIntent = new Intent(this, typeof(AggregatedDataActivity));
-                    StartActivity(aggregatedDataIntent);
-                    return true;
                 case Resource.Id.match_history_menu_item:
                     var MatchHistoryIntent = new Intent(this, typeof(MatchHistoryActivity));
                     StartActivity(MatchHistoryIntent);
