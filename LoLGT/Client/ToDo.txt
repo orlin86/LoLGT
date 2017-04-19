@@ -3,7 +3,7 @@ Add method in SendData Line 34
 
 Add method in SendData Line 40
 
-Svetoslav:
+Stanislav:
 Add method in ChampionStatisticsActivity Line 36
 
 Add method in MatchHistoryActivity Line 33
