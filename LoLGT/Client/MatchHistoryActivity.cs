@@ -9,6 +9,8 @@ using Android.Support.V7.Widget;
 using System.Collections.Generic;
 using System.Threading;
 using App1.Model;
+using Newtonsoft.Json;
+
 namespace App1
 {
     [Activity(Label = "Match History")]
@@ -17,6 +19,7 @@ namespace App1
         MatchHistory matchHistory = new MatchHistory();
         protected override void OnCreate(Bundle savedInstanceState)
         {
+            var matchHistoryRowList = new List<MatchHistoryRow>();
             base.OnCreate(savedInstanceState);
 
             SetContentView(Resource.Layout.match_history_layout);
@@ -30,7 +33,7 @@ namespace App1
                 if (er.Data.Contains("#07"))
                 {
                     var json = er.Data.Substring(3);
-                    
+                    matchHistoryRowList = JsonConvert.DeserializeObject<List<MatchHistoryRow>>(json);
                     // ↓ ADD THE METHOD HERE WITH json AS PARAM
                 }
             });
@@ -75,12 +78,9 @@ namespace App1
             TableLayout table = (TableLayout)FindViewById(Resource.Id.maintable);
             table.AddView(headerRow);
 
-            var random = new Random();
 
-            for (int i = 1; i < 100; i++)
+            for (int i = 0; i < matchHistoryRowList.Count; i++)
             {
-                //Get Data Row
-                var matchHistoryRow = matchHistory[random.Next(0, 3)];
 
                 //Create a new table row
                 TableRow row = new TableRow(this);
@@ -98,11 +98,11 @@ namespace App1
 
                 //Fill columns with data from the db
                 ChampImageView.SetImageResource(Resource.Drawable.ahri);
-                ChampionNameTexView.Text = matchHistoryRow.ChampionName;
-                KillsTextView.Text = matchHistoryRow.Kills.ToString();
-                DeathsTextView.Text = matchHistoryRow.Deaths.ToString();
-                AssistsTextView.Text = matchHistoryRow.Assists.ToString();
-                MinionKillsView.Text = matchHistoryRow.MinionKills.ToString();
+                ChampionNameTexView.Text = matchHistoryRowList[i].Kills.ToString();
+                DeathsTextView.Text = matchHistoryRowList[i].ChampionName;
+                KillsTextView.Text = matchHistoryRowList[i].Deaths.ToString();
+                AssistsTextView.Text = matchHistoryRowList[i].Assists.ToString();
+                MinionKillsView.Text = matchHistoryRowList[i].MinionKills.ToString();
             
                 //append(view to the row)
                 row.AddView(ChampImageView);
@@ -113,7 +113,7 @@ namespace App1
                 row.AddView(MinionKillsView);
 
                 //append row to the table layout
-                table.AddView(row, i);
+                table.AddView(row, i + 1);
             }
 
             var toolbar = FindViewById<Toolbar>(Resource.Id.match_history_toolbar);
