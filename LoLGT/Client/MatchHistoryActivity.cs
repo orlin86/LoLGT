@@ -30,6 +30,7 @@ namespace App1
                 if (er.Data.Contains("#07"))
                 {
                     var json = er.Data.Substring(3);
+                    
                     // ↓ ADD THE METHOD HERE WITH json AS PARAM
                 }
             });
@@ -128,13 +129,19 @@ namespace App1
 
         public override bool OnOptionsItemSelected(IMenuItem item)
         {
-            //Toast.MakeText(this, "Action selected: " + item.TitleFormatted,
-            //    ToastLength.Short).Show();
+
+            //Current Summoner's name which is passed from the ChampionStatisticsActivity
+            var summonerName = "";
+            if (this.Intent.Extras != null)
+            {
+                summonerName = this.Intent.Extras.GetString("summoner_name");
+            }
 
             switch (item.ItemId)
             {
                 case Resource.Id.champion_stats_menu_item:
                     var champStatsDataIntent = new Intent(this, typeof(ChampionStatisticsActivity));
+                    champStatsDataIntent.PutExtra("summoner_name", summonerName);
                     StartActivity(champStatsDataIntent);
                     return true;
                 default:

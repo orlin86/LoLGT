@@ -19,7 +19,7 @@ namespace App1
     {
         protected override void OnCreate(Bundle savedInstanceState)
         {
-            ChampionStatistics championStatistics = new ChampionStatistics();
+            List<ChampionStatisticsRow> championStatsRowList = new List<ChampionStatisticsRow>();
 
             base.OnCreate(savedInstanceState);
 
@@ -80,10 +80,10 @@ namespace App1
 
             var random = new Random();
 
-            for (int i = 1; i < 5; i++)
+            for (int i = 0; i < championStatsRowList.Count; i++)
             {
                 //Get Data Row
-                var championStatisticsRow = championStatistics[random.Next(0, 3)];
+                
 
                 //Create a new table row
                 TableRow row = new TableRow(this);
@@ -101,11 +101,11 @@ namespace App1
 
                 //Fill columns with data from the db
                 ChampImageView.SetImageResource(Resource.Drawable.ahri);
-                ChampionNameTexView.Text = championStatisticsRow.ChampionName;
-                WinsTextView.Text = championStatisticsRow.Wins.ToString();
-                LosesTextView.Text = championStatisticsRow.Loses.ToString();
-                KDATextView.Text = championStatisticsRow.KDA.ToString();
-                MinionKillsView.Text = championStatisticsRow.MinionKills.ToString();
+                ChampionNameTexView.Text = championStatsRowList[i].ChampionName;
+                WinsTextView.Text = championStatsRowList[i].Wins.ToString();
+                LosesTextView.Text = championStatsRowList[i].Loses.ToString();
+                KDATextView.Text = championStatsRowList[i].KDA.ToString();
+                MinionKillsView.Text = championStatsRowList[i].MinionKills.ToString();
 
                 //append(view to the row)
                 row.AddView(ChampImageView);
@@ -132,13 +132,17 @@ namespace App1
 
         public override bool OnOptionsItemSelected(IMenuItem item)
         {
-            //Toast.MakeText(this, "Action selected: " + item.TitleFormatted,
-            //    ToastLength.Short).Show();
-
+            //Current Summoner's name which is passed from the MainActivity
+            var summonerName = "";
+            if (this.Intent.Extras != null)
+            {
+                summonerName = this.Intent.Extras.GetString("summoner_name");
+            }
             switch (item.ItemId)
             {
                 case Resource.Id.match_history_menu_item:
                     var MatchHistoryIntent = new Intent(this, typeof(MatchHistoryActivity));
+                    MatchHistoryIntent.PutExtra("summoner_name", summonerName);
                     StartActivity(MatchHistoryIntent);
                     return true;
                 default:
