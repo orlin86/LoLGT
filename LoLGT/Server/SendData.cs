@@ -1,4 +1,5 @@
-﻿using Server.ServiceConsumer;
+﻿using Server.Service;
+using Server.ServiceConsumer;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,6 +24,7 @@ namespace Server
         protected override void OnMessage(MessageEventArgs e)
         {
             Console.WriteLine(e.Data);
+            DataFetcher dataFetcher = new DataFetcher();
 
             LoLClient lol = new LoLClient();
             if (e.Data.Contains("#01"))
@@ -33,11 +35,15 @@ namespace Server
             {
                 // ↓ Tony, add here the method for ChampionStatisticsActivity
                 //Send ($"#05{METHOD NAME)");
+                string jsonChampStats = dataFetcher.ChampionStatsData("Hades Underworld");
+                Send($"#05{jsonChampStats}");
             }
             else if (e.Data.Contains("#06"))
             {
                 // ↓ Tony, add here the method for MatchHistory
                 //Send ($"#07{METHOD NAME)");
+                string jsonMatchesHistory = dataFetcher.MatchHistoryData("Hades Underworld");
+                Send($"#07{jsonMatchesHistory}");
             }
         }
 
