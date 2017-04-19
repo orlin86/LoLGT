@@ -21,7 +21,7 @@ namespace Server
         {
             // INit DB
             //    Utility.LaunchDB();
-            Console.WriteLine(n);
+        //    Console.WriteLine(n);
              LoLClient lol = new LoLClient();
             lol.GetSummonerIdByName("Sirias");
             lol.GetSummonerMatchesById();
