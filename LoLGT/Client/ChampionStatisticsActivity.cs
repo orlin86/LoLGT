@@ -11,6 +11,7 @@ using Android.Views;
 using Android.Widget;
 using Android.Support.V7.Widget;
 using App1.Model;
+using Newtonsoft.Json;
 
 namespace App1
 {
@@ -25,21 +26,20 @@ namespace App1
 
             SetContentView(Resource.Layout.champion_statistics_layout);
 
-            MainActivity.WsClient.ws.Send("#04");
+            //Set the toolbar for the activity
+            var toolbar = FindViewById<Toolbar>(Resource.Id.champ_stats_toolbar);
+            SetActionBar(toolbar);
+            ActionBar.Title = "Champion Stats";
 
-            // ↓ Stanislav, add here method to parse the json
-            ThreadPool.QueueUserWorkItem(o => MainActivity.WsClient.ws.OnMessage += (senderer, er) =>
-            {
-                // ↓ Incoming data from the server
-                if (er.Data.Contains("#05"))
-                {
-                    var json = er.Data.Substring(3);
-                    // ↓ ADD THE METHOD HERE WITH json AS PARAM
-                    
-                }
-            });
+            //Create Table children(these will be the columns)
+            var ChampImageView = new ImageView(this);
+            var ChampionNameTexView = new TextView(this);
+            var WinsTextView = new TextView(this);
+            var LosesTextView = new TextView(this);
+            var KDATextView = new TextView(this);
+            var MinionKillsView = new TextView(this);
 
-            //Create and append header row
+            //Create and header row
             TableRow headerRow = new TableRow(this);
             headerRow.SetMinimumHeight(100);
             headerRow.SetPadding(0, 120, 0, 120);
@@ -63,6 +63,32 @@ namespace App1
             var minionHeader = new TextView(this);
             minionHeader.Text = "Minions";
 
+
+            MainActivity.WsClient.ws.Send("#04" + this.Intent.Extras.GetString("summoner_name"));
+
+            // ↓ Stanislav, add here method to parse the json
+            ThreadPool.QueueUserWorkItem(o => MainActivity.WsClient.ws.OnMessage += (senderer, er) =>
+            {
+                // ↓ Incoming data from the server
+                if (er.Data.Contains("#05"))
+                {
+                    var json = er.Data.Substring(3);
+                    championStatsRowList = JsonConvert.DeserializeObject<List<ChampionStatisticsRow>>(json);
+                    // ↓ ADD THE METHOD HERE WITH json AS PARAM
+                }
+
+                else if (er.Data.Contains("#08"))
+                {
+                    Toast.MakeText(this, "There are no champion stats for this summoner!",
+                    ToastLength.Long).Show();
+                    //Thread.Sleep(5000);
+                    var intent = new Intent(this, typeof(MainActivity));
+                    StartActivity(intent);
+                }
+            });
+
+            
+
             headerRow.AddView(imageHeader);
             headerRow.AddView(champNameHeader);
             headerRow.AddView(winsHeader);
@@ -78,26 +104,18 @@ namespace App1
             TableLayout table = (TableLayout)FindViewById(Resource.Id.maintable_champ_stats);
             table.AddView(headerRow);
 
-            var random = new Random();
-
             for (int i = 0; i < championStatsRowList.Count; i++)
             {
                 //Get Data Row
-                
 
                 //Create a new table row
                 TableRow row = new TableRow(this);
+
                 row.SetPadding(0, 20, 0, 0);
                 if (i % 2 == 0)
                     row.SetBackgroundColor(Android.Graphics.Color.LightGray);
 
-                //Create Table children(these will be the columns)
-                var ChampImageView = new ImageView(this);
-                var ChampionNameTexView = new TextView(this);
-                var WinsTextView = new TextView(this);
-                var LosesTextView = new TextView(this);
-                var KDATextView = new TextView(this);
-                var MinionKillsView = new TextView(this);
+               
 
                 //Fill columns with data from the db
                 ChampImageView.SetImageResource(Resource.Drawable.ahri);
@@ -116,12 +134,10 @@ namespace App1
                 row.AddView(MinionKillsView);
 
                 //append row to the table layout
-                table.AddView(row, i);
+                table.AddView(row, i + 1);
             }
 
-            var toolbar = FindViewById<Toolbar>(Resource.Id.champ_stats_toolbar);
-            SetActionBar(toolbar);
-            ActionBar.Title = "Champion Stats";
+           
         }
 
         public override bool OnCreateOptionsMenu(IMenu menu)
