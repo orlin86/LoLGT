@@ -181,7 +181,7 @@ namespace Server.ServiceConsumer
             }
             catch (Exception ex)
             {
-                throw new ArgumentException("Either response serializing or finding name went wrong " + ex.Message);
+                return "#03";
             }
             try
             {
